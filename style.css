@@ -29,16 +29,33 @@ body{
     max-width: 200px;
 }
 
-.container .btn{
+.container .btn {
     display: flex;
     gap: 25px;
 }
-.btn a {
+.btn a { 
     text-decoration: none;
-    color: #111;
-    background: #fff;
+    color:white;
+    background: linear-gradient(45deg, #ff4081, #ff80ab);
     padding: 10px 25px;
+    margin: 20px auto;
     border-radius: 8px;
-    box-shadow: 0.5rem 1rem 3rem hsl(0, 0%,0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
 
+}   
+
+
+.btn a:hover {
+    background: linear-gradient(45deg, #e91e63, #ff4081);
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
+
+
+.btn a:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
