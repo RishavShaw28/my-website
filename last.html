@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg,  #ffccd5, #ff9eb6, #ffc8dd, #d8bbff, #cdb4db);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        h2 {
+            color: #ff4081;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .emoji-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .emoji {
+            font-size: 45px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            opacity: 0.5;
+        }
+
+        .emoji.active {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #ff4081;
+            resize: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #d81b60;
+            outline: none;
+        }
+
+        button {
+            background: #ff4081;
+            color: #fff;
+            border: none;
+            padding: 12px 18px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #d81b60;
+            transform: scale(1.05);
+        }
+
+        #successMessage {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            text-align: center;
+        }
+
+        #moveToStart {
+            display: block;
+            background: #28a745;
+            margin-top: 15px;
+        }
+
+        #moveToStart:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="feedback-container" id="feedbackContainer">
+        <h2>How Much You Liked It</h2>
+
+        <div class="emoji-container">
+            <div class="emoji" data-value="1">😞</div>
+            <div class="emoji" data-value="2">🙂</div>
+            <div class="emoji active" data-value="3">😇</div>
+            <div class="emoji " data-value="4">😍</div>
+            <div class="emoji" data-value="5">💓</div>
+        </div>
+
+        <form id="feedbackForm" action="https://formsubmit.co/xiig41.rishavshaw@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Feedback Received!">
+            <input type="hidden" name="rating" id="ratingInput" value="4">
+            
+            <textarea name="message" id="feedbackMsg" placeholder="Type Your Number For Me To Contact You!"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="successMessage">
+        <h2>Your Message Has Reached Me 🎉</h2>
+        <button id="moveToStart">Move to Starting</button>
+    </div>
+
+    <script>
+        const emojis = document.querySelectorAll(".emoji");
+        const ratingInput = document.getElementById("ratingInput");
+        const feedbackForm = document.getElementById("feedbackForm");
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        const successMessage = document.getElementById("successMessage");
+        const moveToStartButton = document.getElementById("moveToStart");
+
+       
+        emojis.forEach(emoji => {
+            emoji.addEventListener("click", function () {
+                emojis.forEach(e => e.classList.remove("active"));
+                this.classList.add("active");
+                ratingInput.value = this.getAttribute("data-value");
+            });
+        });
+
+        
+        feedbackForm.addEventListener("submit", function (event) {
+            event.preventDefault(); 
+
+            
+            feedbackContainer.style.display = "none";
+            successMessage.style.display = "block";
+
+            setTimeout(() => {
+                this.submit();
+            }, 500);
+        });
+
+        
+        moveToStartButton.addEventListener("click", function () {
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>
